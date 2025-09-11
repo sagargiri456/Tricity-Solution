@@ -541,16 +541,16 @@ const Index = () => {
               </p>
               <div className="flex space-x-4">
                 {[
-                  { icon: Facebook, label: "Facebook" },
-                  { icon: Twitter, label: "Twitter" },
-                  { icon: Instagram, label: "Instagram" },
-                  { icon: Linkedin, label: "LinkedIn" }
+                  { icon: Facebook, label: "Facebook", link:"https://www.facebook.com/share/1NyHFsn9dc/" },
+                  // { icon: Twitter, label: "Twitter" },
+                  // { icon: Instagram, label: "Instagram" },
+                  // { icon: Linkedin, label: "LinkedIn" }
                 ].map((social, index) => {
                   const Icon = social.icon;
                   return (
                     <a 
                       key={index}
-                      href="#" 
+                      href={social.link} 
                       aria-label={social.label}
                       className="w-10 h-10 rounded-full flex items-center justify-center bg-background/80 text-muted-foreground hover:text-primary hover:bg-background hover:shadow-sm transition-all duration-300 group"
                     >
