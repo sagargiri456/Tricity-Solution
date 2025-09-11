@@ -715,7 +715,7 @@ const Index = () => {
               </h3>
               <ul className="space-y-4">
                 {[
-                  { icon: MapPin, content: "Sector 17, Chandigarh, India" },
+                  { icon: MapPin, content: "SCF 50, Sector 8 Panchkula, 134109 with location•⁠ ⁠IN serving - Serving all pincodes of Chandigarh, Panchkula, Mohali and ZIrakpur" },
                   { icon: Phone, content: "+91 98765 43210" },
                   { icon: Mail, content: "info@clientcompany.com" },
                   { icon: Clock, content: "Mon-Sat: 9AM - 6PM" }
