@@ -20,6 +20,7 @@ const Index = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<string>("");
   const [isHeroInView, setIsHeroInView] = useState(true);
+  const [showNavbar, setShowNavbar] = useState(false);
 
   const services = [
     {
@@ -110,15 +111,82 @@ const Index = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      
+      // Show navbar when scrolled 100vh (full viewport height)
+      setShowNavbar(scrollPosition >= viewportHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/10 dark:bg-neutral-900/20 backdrop-blur-lg border-b border-white/20 dark:border-white/10 z-50 shadow-md">
+      <nav className={`fixed top-0 w-full bg-white/10 dark:bg-neutral-900/20 backdrop-blur-lg border-b border-white/20 dark:border-white/10 z-50 shadow-md transition-all duration-300 ${
+        showNavbar 
+          ? 'translate-y-0 opacity-100' 
+          : '-translate-y-full opacity-0'
+      }`}>
         <div className="container mx-auto px-4 h-20 flex items-center justify-between relative">
-          <div className="font-bold text-2xl relative group">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"></span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300"></span>
+          {/* TRICITY Logo */}
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 flex-shrink-0">
+              <svg viewBox="0 0 100 100" className="w-full h-full">
+                {/* Main triangular shape */}
+                <path d="M50 10 L85 70 L15 70 Z" fill="url(#triangleGradient)" />
+                {/* Cityscape buildings */}
+                <rect x="35" y="50" width="6" height="15" fill="url(#buildingGradient1)" />
+                <rect x="42" y="45" width="6" height="20" fill="url(#buildingGradient2)" />
+                <rect x="49" y="40" width="6" height="25" fill="url(#buildingGradient3)" />
+                <rect x="56" y="45" width="6" height="20" fill="url(#buildingGradient2)" />
+                <rect x="63" y="50" width="6" height="15" fill="url(#buildingGradient1)" />
+                {/* Water/base line */}
+                <rect x="30" y="65" width="40" height="3" fill="url(#waterGradient)" />
+                {/* Side motion lines */}
+                <path d="M15 70 L5 60" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
+                <path d="M15 70 L8 63" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" />
+                <path d="M85 70 L95 60" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
+                <path d="M85 70 L92 63" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" />
+                
+                {/* Gradients */}
+                <defs>
+                  <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#1e40af" />
+                    <stop offset="100%" stopColor="#7c3aed" />
+                  </linearGradient>
+                  <linearGradient id="buildingGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#1d4ed8" />
+                  </linearGradient>
+                  <linearGradient id="buildingGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#60a5fa" />
+                    <stop offset="100%" stopColor="#2563eb" />
+                  </linearGradient>
+                  <linearGradient id="buildingGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#93c5fd" />
+                    <stop offset="100%" stopColor="#3b82f6" />
+                  </linearGradient>
+                  <linearGradient id="waterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#60a5fa" />
+                    <stop offset="100%" stopColor="#3b82f6" />
+                  </linearGradient>
+                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#1e40af" />
+                    <stop offset="100%" stopColor="#7c3aed" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-foreground tracking-wide">TRICITY</span>
+              <span className="text-xs text-muted-foreground tracking-widest">-SOLUTIONS-</span>
+            </div>
           </div>
           
           <div className="hidden md:flex space-x-1 absolute left-1/2 -translate-x-1/2">
@@ -131,10 +199,10 @@ const Index = () => {
               <a 
                 key={index}
                 href={item.href} 
-                className={`relative px-4 py-2 ${isHeroInView ? 'text-white' : 'text-black'} group overflow-hidden rounded-md`}
+                className="relative px-4 py-2 text-foreground group overflow-hidden rounded-md"
                 onClick={(e) => { e.preventDefault(); scrollToSection(item.href.replace('#', '')); }}
               >
-                <span className={`relative z-10 ${isHeroInView ? 'text-white' : 'text-black'} font-semibold transition-colors duration-200`}>{item.label}</span>
+                <span className="relative z-10 text-foreground font-semibold transition-colors duration-200">{item.label}</span>
                 <span className="absolute inset-0 h-full w-0 bg-primary group-hover:w-full transition-all duration-300 rounded-md opacity-0 group-hover:opacity-100"></span>
               </a>
             ))}
@@ -151,7 +219,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section - Simplified but Attractive Design */}
-      <section id="hero" className="relative min-h-screen mt-2 flex items-center justify-center overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Clean Background with Subtle Effect */}
         <div className="absolute inset-0">
           <div className="absolute inset-0">
@@ -183,7 +251,59 @@ const Index = () => {
           {/* Clean Headline */}
           <div>
             <h1 className="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
-              <span className="block mb-2 text-white">KaamKarlo.com</span>
+              <div className="flex items-center justify-center mb-2">
+                <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 mr-4">
+                  <svg viewBox="0 0 100 100" className="w-full h-full">
+                    {/* Main triangular shape */}
+                    <path d="M50 10 L85 70 L15 70 Z" fill="url(#heroTriangleGradient)" />
+                    {/* Cityscape buildings */}
+                    <rect x="35" y="50" width="6" height="15" fill="url(#heroBuildingGradient1)" />
+                    <rect x="42" y="45" width="6" height="20" fill="url(#heroBuildingGradient2)" />
+                    <rect x="49" y="40" width="6" height="25" fill="url(#heroBuildingGradient3)" />
+                    <rect x="56" y="45" width="6" height="20" fill="url(#heroBuildingGradient2)" />
+                    <rect x="63" y="50" width="6" height="15" fill="url(#heroBuildingGradient1)" />
+                    {/* Water/base line */}
+                    <rect x="30" y="65" width="40" height="3" fill="url(#heroWaterGradient)" />
+                    {/* Side motion lines */}
+                    <path d="M15 70 L5 60" stroke="url(#heroLineGradient)" strokeWidth="2" fill="none" />
+                    <path d="M15 70 L8 63" stroke="url(#heroLineGradient)" strokeWidth="1.5" fill="none" />
+                    <path d="M85 70 L95 60" stroke="url(#heroLineGradient)" strokeWidth="2" fill="none" />
+                    <path d="M85 70 L92 63" stroke="url(#heroLineGradient)" strokeWidth="1.5" fill="none" />
+                    
+                    {/* Gradients */}
+                    <defs>
+                      <linearGradient id="heroTriangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#ffffff" />
+                        <stop offset="100%" stopColor="#e0e7ff" />
+                      </linearGradient>
+                      <linearGradient id="heroBuildingGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#ffffff" />
+                        <stop offset="100%" stopColor="#c7d2fe" />
+                      </linearGradient>
+                      <linearGradient id="heroBuildingGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#f8fafc" />
+                        <stop offset="100%" stopColor="#e0e7ff" />
+                      </linearGradient>
+                      <linearGradient id="heroBuildingGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#ffffff" />
+                        <stop offset="100%" stopColor="#c7d2fe" />
+                      </linearGradient>
+                      <linearGradient id="heroWaterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#ffffff" />
+                        <stop offset="100%" stopColor="#e0e7ff" />
+                      </linearGradient>
+                      <linearGradient id="heroLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#ffffff" />
+                        <stop offset="100%" stopColor="#c7d2fe" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-5xl md:text-7xl font-bold text-white tracking-wide">TRICITY</span>
+                  <span className="text-sm md:text-lg text-white/80 tracking-widest">-SOLUTIONS-</span>
+                </div>
+              </div>
             </h1>
           </div>
           
@@ -386,16 +506,15 @@ const Index = () => {
             {/* Map Placeholder */}
             <Card className="shadow-card border-0 group hover:shadow-glow transition-all duration-300">
               <CardContent className="p-6">
-                <div className="w-full h-96 bg-muted rounded-lg flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="text-center relative z-10">
-                    <MapPin className="h-12 w-12 text-primary mx-auto mb-4 animate-pulse-slow" />
-                    <h4 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">Service Areas</h4>
-                    <p className="text-muted-foreground">
-                      We serve all sectors of Chandigarh, Mohali, and surrounding areas.
-                      <br />Google Maps integration available.
-                    </p>
-                  </div>
+                <div className="w-full h-[450px] overflow-hidden rounded-lg">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d27439.970429352095!2d76.80389657908287!3d30.718504314581295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sSCF%2050%2C%20Sector%208%20Panchkula%2C%20134109%20with%20location%E2%80%A2%E2%81%A0%20%E2%81%A0IN%20serving%20-%20Serving%20all%20pincodes%20of%20Chandigarh%2C%20Panchkula%2C%20Mohali%C2%A0and%C2%A0ZIrakpur!5e0!3m2!1sen!2sin!4v1757580326371!5m2!1sen!2sin"
+                    className="w-full h-full"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
               </CardContent>
             </Card>
