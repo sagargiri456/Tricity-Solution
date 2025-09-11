@@ -7,7 +7,7 @@ import BookingModal from "@/components/BookingModal";
 import TestimonialCard from "@/components/TestimonialCard";
 import ProjectGallery from "@/components/ProjectGallery";
 import heroImage from "@/assets/hero-services.jpg";
-import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Linkedin, Menu, X } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Linkedin, Menu, X, MessageCircle } from "lucide-react";
 // Import service images
 import plumbingImage from "@/assets/service-plumbing.jpg";
 import paintingImage from "@/assets/service-painting.webp";
@@ -87,6 +87,22 @@ const Index = () => {
     setTimeout(() => {
       setIsBookingOpen(true);
     }, 100);
+  };
+
+  const handleWhatsAppClick = () => {
+    // Phone number confirmed working on WhatsApp
+    const phoneNumber = "919876543210"; // Format: country code + number (no +, no spaces)
+    const message = "Hi! I'm interested in your services. Can you please provide more information?";
+    
+    // Use the more reliable api.whatsapp.com URL format
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
+    
+    // Log for debugging
+    console.log('WhatsApp URL:', whatsappUrl);
+    console.log('Phone number:', phoneNumber);
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
   };
   const scrollToSection = (id: string) => {
   const section = document.getElementById(id);
@@ -736,14 +752,14 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="border-t border-border/30 mt-8 md:mt-12 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center text-muted-foreground">
+          {/* <div className="border-t border-border/30 mt-8 md:mt-12 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center text-muted-foreground">
             <p className="text-xs md:text-sm text-center md:text-left">&copy; {new Date().getFullYear()} TRICITY Solutions. All rights reserved.</p>
             <div className="mt-4 md:mt-0 flex flex-wrap justify-center md:justify-end space-x-4 md:space-x-6">
               <a href="#" className="text-xs md:text-sm hover:text-primary transition-colors duration-300">Privacy Policy</a>
               <a href="#" className="text-xs md:text-sm hover:text-primary transition-colors duration-300">Terms of Service</a>
               <a href="#" className="text-xs md:text-sm hover:text-primary transition-colors duration-300">Sitemap</a>
             </div>
-          </div>
+          </div> */}
         </div>
       </footer>
 
@@ -753,6 +769,26 @@ const Index = () => {
         onClose={() => setIsBookingOpen(false)}
         selectedService={selectedService}
       />
+
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <button
+          onClick={handleWhatsAppClick}
+          className="group relative bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 animate-pulse"
+          aria-label="Contact us on WhatsApp"
+        >
+          <MessageCircle className="h-6 w-6" />
+          
+          {/* Tooltip */}
+          <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            Chat with us on WhatsApp
+            <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-gray-900"></div>
+          </div>
+          
+          {/* Pulse animation ring */}
+          <div className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-20"></div>
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,48 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main triangular shape -->
+  <path d="M50 10 L85 70 L15 70 Z" fill="url(#triangleGradient)" />
+  
+  <!-- Cityscape buildings -->
+  <rect x="35" y="50" width="6" height="15" fill="url(#buildingGradient1)" />
+  <rect x="42" y="45" width="6" height="20" fill="url(#buildingGradient2)" />
+  <rect x="49" y="40" width="6" height="25" fill="url(#buildingGradient3)" />
+  <rect x="56" y="45" width="6" height="20" fill="url(#buildingGradient2)" />
+  <rect x="63" y="50" width="6" height="15" fill="url(#buildingGradient1)" />
+  
+  <!-- Water/base line -->
+  <rect x="30" y="65" width="40" height="3" fill="url(#waterGradient)" />
+  
+  <!-- Side motion lines -->
+  <path d="M15 70 L5 60" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
+  <path d="M15 70 L8 63" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" />
+  <path d="M85 70 L95 60" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
+  <path d="M85 70 L92 63" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" />
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#1e40af" />
+      <stop offset="100%" stopColor="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="buildingGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#3b82f6" />
+      <stop offset="100%" stopColor="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="buildingGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#60a5fa" />
+      <stop offset="100%" stopColor="#2563eb" />
+    </linearGradient>
+    <linearGradient id="buildingGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#93c5fd" />
+      <stop offset="100%" stopColor="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#60a5fa" />
+      <stop offset="100%" stopColor="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#1e40af" />
+      <stop offset="100%" stopColor="#7c3aed" />
+    </linearGradient>
+  </defs>
+</svg>
