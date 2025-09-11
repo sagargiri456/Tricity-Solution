@@ -602,12 +602,12 @@ const Index = () => {
             <div className="space-y-4 md:space-y-6">
               {/* Footer Logo (replaced SVG with image) */}
               <div className="flex items-center space-x-2 md:space-x-3">
-                <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0">
+                <div className="w-28 h-28 md:w-30 md:h-30 flex-shrink-0">
                   <img src={logoImage} alt="TRICITY Logo" className="w-full h-full object-contain" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-lg md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wide">TRICITY</span>
-                  <span className="text-xs text-muted-foreground tracking-widest">-SOLUTIONS-</span>
+                  {/* <span className="text-lg md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wide">TRICITY</span> */}
+                  {/* <span className="text-xs text-muted-foreground tracking-widest">-SOLUTIONS-</span> */}
                 </div>
               </div>
 
