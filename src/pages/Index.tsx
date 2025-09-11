@@ -642,7 +642,7 @@ const Index = () => {
               </p>
               <div className="flex space-x-4">
                 {[
-                  { icon: Facebook, label: "Facebook", link:"https://www.facebook.com/share/1NyHFsn9dc/" },
+                  { icon: Facebook, label: "Facebook", link:"https://www.facebook.com/share/1CjbsdZZsZ/" },
                   // { icon: Twitter, label: "Twitter" },
                   // { icon: Instagram, label: "Instagram" },
                   // { icon: Linkedin, label: "LinkedIn" }
