@@ -330,7 +330,7 @@ const Index = () => {
                     </div>
                     <div className="relative z-10">
                       <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Phone</h4>
-                      <p className="text-muted-foreground">+91 98765 43210</p>
+                      <p className="text-muted-foreground">+91 90415 80995</p>
                     </div>
                   </div>
                 </CardContent>
@@ -360,7 +360,7 @@ const Index = () => {
                     </div>
                     <div className="relative z-10">
                       <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Location</h4>
-                      <p className="text-muted-foreground">Serving all sectors of Chandigarh & Mohali</p>
+                      <p className="text-muted-foreground">SCF 50, Sector 8, Panchkula, 134109</p>
                     </div>
                   </div>
                 </CardContent>
@@ -422,16 +422,18 @@ const Index = () => {
               </p>
               <div className="flex space-x-4">
                 {[
-                  { icon: Facebook, label: "Facebook" },
-                  { icon: Twitter, label: "Twitter" },
-                  { icon: Instagram, label: "Instagram" },
-                  { icon: Linkedin, label: "LinkedIn" }
+                  { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/share/1NyHFsn9dc/" },
+                  { icon: Twitter, label: "Twitter", href: "#" },
+                  { icon: Instagram, label: "Instagram", href: "#" },
+                  { icon: Linkedin, label: "LinkedIn", href: "#" }
                 ].map((social, index) => {
                   const Icon = social.icon;
                   return (
                     <a 
                       key={index}
-                      href="#" 
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       aria-label={social.label}
                       className="w-10 h-10 rounded-full flex items-center justify-center bg-background/80 text-muted-foreground hover:text-primary hover:bg-background hover:shadow-sm transition-all duration-300 group"
                     >
@@ -495,8 +497,8 @@ const Index = () => {
               </h3>
               <ul className="space-y-4">
                 {[
-                  { icon: MapPin, content: "Sector 17, Chandigarh, India" },
-                  { icon: Phone, content: "+91 98765 43210" },
+                  { icon: MapPin, content: "SCF 50, Sector 8, Panchkula, 134109" },
+                  { icon: Phone, content: "+91 90415 80995" },
                   { icon: Mail, content: "info@clientcompany.com" },
                   { icon: Clock, content: "Mon-Sat: 9AM - 6PM" }
                 ].map((item, index) => {
