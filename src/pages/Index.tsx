@@ -294,30 +294,35 @@ const Index = () => {
         {/* Background layers */}
         <div className="absolute inset-0">
           <div className="absolute inset-0">
-            <img src={heroImage} alt="Professional home services" className="w-full h-full object-cover filter brightness-75" />
+            <img src={heroImage} alt="Professional home services" className="w-full h-full object-cover " />
           </div>
 
           {/* Simple Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-secondary/70 mix-blend-multiply"></div>
+          {/* <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary mix-blend-multiply"></div> */}
 
           {/* Subtle Pattern Overlay */}
-          <div className="absolute inset-0 bg-dot-pattern-small bg-[length:20px_20px] opacity-5"></div>
+          {/* <div className="absolute inset-0 bg-dot-pattern-small bg-[length:20px_20px] "></div> */}
         </div>
 
-        {/* HERO-LOGO: absolute top-left inside hero (replaced svg with image) */}
-        <div className="absolute top-2 left-2 z-20">
-          <div
-            className="relative w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-32
-                       rounded-2xl overflow-hidden flex items-center justify-center
-                       bg-white/20 dark:bg-neutral-800/30 backdrop-blur-sm
-                       shadow-2xl drop-shadow-lg ring-1 ring-white/40 dark:ring-white/20
-                       transform transition-all duration-300 hover:-translate-y-1 hover:scale-105"
-            aria-hidden="false"
-          >
-            <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/8 to-transparent dark:from-neutral-700/6" />
-            <img src={logoImage} alt="KaamKarlo Logo" className="relative z-10 w-[78%] h-[78%] object-contain" />
-          </div>
-        </div>
+        {/* HERO-LOGO: absolute top-left inside hero (with stronger shadow) */}
+<div className="absolute top-2 left-2 z-20">
+  <div
+    className="relative w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-32
+               rounded-2xl overflow-hidden flex items-center justify-center
+               bg-white/20 dark:bg-neutral-800/30 backdrop-blur-sm
+               shadow-[0_8px_30px_rgba(0,0,0,0.7)] drop-shadow-2xl
+               ring-1 ring-white/60 dark:ring-white/60
+               transform transition-all duration-300 hover:-translate-y-1 hover:scale-105"
+    aria-hidden="false"
+  >
+    <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/8 to-transparent dark:from-neutral-700/6" />
+    <img
+      src={logoImage}
+      alt="KaamKarlo Logo"
+      className="relative z-10 w-[78%] h-[78%] object-contain"
+    />
+  </div>
+</div>
 
         {/* Content Container (centered) */}
         <div className="relative z-10 text-center mt-6 text-white px-4 max-w-4xl mx-auto">
