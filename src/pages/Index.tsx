@@ -305,9 +305,9 @@ const Index = () => {
         </div>
 
         {/* HERO-LOGO: absolute top-left inside hero (with stronger shadow) */}
-<div className="absolute top-2 left-2 z-20">
+<div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
   <div
-    className="relative w-34 h-34 md:w-38 md:h-38 lg:w-50 lg:h-42
+    className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36
                rounded-2xl overflow-hidden flex items-center justify-center
                shadow-[0_8px_30px_rgba(0,0,0,0.7)] drop-shadow-2xl
                ring-1 ring-white/60 dark:ring-white/60
@@ -318,7 +318,7 @@ const Index = () => {
     <img
       src={logoImage}
       alt="KaamKarlo Logo"
-      className="relative z-10 w-[78%] h-[78%] object-contain"
+      className="relative z-10 w-[75%] h-[75%] object-contain"
     />
   </div>
 </div>
