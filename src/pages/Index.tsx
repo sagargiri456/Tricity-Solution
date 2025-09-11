@@ -309,7 +309,7 @@ const Index = () => {
   <div
     className="relative w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-32
                rounded-2xl overflow-hidden flex items-center justify-center
-               bg-white/20 dark:bg-neutral-800/30 backdrop-blur-sm
+             
                shadow-[0_8px_30px_rgba(0,0,0,0.7)] drop-shadow-2xl
                ring-1 ring-white/60 dark:ring-white/60
                transform transition-all duration-300 hover:-translate-y-1 hover:scale-105"
