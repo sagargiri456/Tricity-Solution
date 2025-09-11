@@ -307,9 +307,8 @@ const Index = () => {
         {/* HERO-LOGO: absolute top-left inside hero (with stronger shadow) */}
 <div className="absolute top-2 left-2 z-20">
   <div
-    className="relative w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-32
+    className="relative w-34 h-34 md:w-38 md:h-38 lg:w-50 lg:h-42
                rounded-2xl overflow-hidden flex items-center justify-center
-             
                shadow-[0_8px_30px_rgba(0,0,0,0.7)] drop-shadow-2xl
                ring-1 ring-white/60 dark:ring-white/60
                transform transition-all duration-300 hover:-translate-y-1 hover:scale-105"
