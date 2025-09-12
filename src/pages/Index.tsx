@@ -555,7 +555,7 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             <div className="space-y-4 md:space-y-6">
-              <div className="flex items-center justify-center">
+              {/* <div className="flex items-center justify-center">
                 <div className="w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
                   <img 
                     src={logoImage} 
@@ -563,7 +563,7 @@ const Index = () => {
                     className="w-full h-full object-contain"
                   />
                 </div>
-              </div>
+              </div> */}
 
               <p className="text-sm md:text-base text-muted-foreground">
                 Professional services for all your home and office needs in Chandigarh. Quality work, timely delivery, and customer satisfaction guaranteed.
