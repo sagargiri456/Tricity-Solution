@@ -14,6 +14,8 @@ import paintingImage from "@/assets/service-painting.webp";
 import waterproofingImage from "@/assets/service-waterproofing.jpg";
 import carpentryImage from "@/assets/service-carpentry.webp";
 import architecturalImage from "@/assets/service-architectural.jpg";
+// Import logo
+import tricityLogo from "@/assets/tricity_logo.png";
  
 
 const Index = () => {
@@ -151,58 +153,14 @@ const Index = () => {
           : '-translate-y-full opacity-0'
       }`}>
         <div className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between relative">
-          {/* TRICITY Logo */}
-          <div className="flex items-center space-x-2 md:space-x-3">
-            <div className="w-8 h-8 md:w-12 md:h-12 flex-shrink-0">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                {/* Main triangular shape */}
-                <path d="M50 10 L85 70 L15 70 Z" fill="url(#triangleGradient)" />
-                {/* Cityscape buildings */}
-                <rect x="35" y="50" width="6" height="15" fill="url(#buildingGradient1)" />
-                <rect x="42" y="45" width="6" height="20" fill="url(#buildingGradient2)" />
-                <rect x="49" y="40" width="6" height="25" fill="url(#buildingGradient3)" />
-                <rect x="56" y="45" width="6" height="20" fill="url(#buildingGradient2)" />
-                <rect x="63" y="50" width="6" height="15" fill="url(#buildingGradient1)" />
-                {/* Water/base line */}
-                <rect x="30" y="65" width="40" height="3" fill="url(#waterGradient)" />
-                {/* Side motion lines */}
-                <path d="M15 70 L5 60" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
-                <path d="M15 70 L8 63" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" />
-                <path d="M85 70 L95 60" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
-                <path d="M85 70 L92 63" stroke="url(#lineGradient)" strokeWidth="1.5" fill="none" />
-                
-                {/* Gradients */}
-                <defs>
-                  <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#1e40af" />
-                    <stop offset="100%" stopColor="#7c3aed" />
-                  </linearGradient>
-                  <linearGradient id="buildingGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#3b82f6" />
-                    <stop offset="100%" stopColor="#1d4ed8" />
-                  </linearGradient>
-                  <linearGradient id="buildingGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#2563eb" />
-                  </linearGradient>
-                  <linearGradient id="buildingGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#93c5fd" />
-                    <stop offset="100%" stopColor="#3b82f6" />
-                  </linearGradient>
-                  <linearGradient id="waterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#3b82f6" />
-                  </linearGradient>
-                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#1e40af" />
-                    <stop offset="100%" stopColor="#7c3aed" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-foreground tracking-wide">TRICITY</span>
-              <span className="text-xs text-muted-foreground tracking-widest hidden sm:block">-SOLUTIONS-</span>
+          {/* TRICITY Logo - Mobile: Left side, Desktop: Center with text */}
+          <div className="flex items-center">
+            <div className="w-16 h-16 md:w-24 md:h-24 flex-shrink-0">
+              <img 
+                src={tricityLogo} 
+                alt="TRICITY Solutions Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
           
@@ -228,14 +186,14 @@ const Index = () => {
           
           {/* Desktop Book Now Button */}
           <div className="hidden md:block">
-            <Button 
-              onClick={() => handleBookNow()} 
-              className="bg-primary hover:bg-primary/90 relative overflow-hidden group"
-            >
-              <span className="relative z-10">Book Now</span>
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity"></span>
-            </Button>
-          </div>
+          <Button 
+            onClick={() => handleBookNow()} 
+            className="bg-primary hover:bg-primary/90 relative overflow-hidden group"
+          >
+            <span className="relative z-10">Book Now</span>
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </Button>
+        </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
@@ -287,6 +245,16 @@ const Index = () => {
 
       {/* Hero Section - Simplified but Attractive Design */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Logo - Top Right Corner */}
+        <div className="absolute top-4 right-12 z-50">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36">
+            <img 
+              src={tricityLogo} 
+              alt="TRICITY Solutions Logo" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
         {/* Clean Background with Subtle Effect */}
         <div className="absolute inset-0">
           <div className="absolute inset-0">
@@ -297,8 +265,6 @@ const Index = () => {
             />
           </div>
           
-          {/* Simple Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-secondary/70 mix-blend-multiply"></div>
           
           {/* Subtle Pattern Overlay */}
           <div className="absolute inset-0 bg-dot-pattern-small bg-[length:20px_20px] opacity-5"></div>
@@ -319,66 +285,14 @@ const Index = () => {
           {/* Clean Headline */}
           <div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight">
-              <div className="flex flex-col sm:flex-row items-center justify-center mb-2">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex-shrink-0 mb-2 sm:mb-0 sm:mr-4">
-                  <svg viewBox="0 0 100 100" className="w-full h-full">
-                    {/* Main triangular shape */}
-                    <path d="M50 10 L85 70 L15 70 Z" fill="url(#heroTriangleGradient)" />
-                    {/* Cityscape buildings */}
-                    <rect x="35" y="50" width="6" height="15" fill="url(#heroBuildingGradient1)" />
-                    <rect x="42" y="45" width="6" height="20" fill="url(#heroBuildingGradient2)" />
-                    <rect x="49" y="40" width="6" height="25" fill="url(#heroBuildingGradient3)" />
-                    <rect x="56" y="45" width="6" height="20" fill="url(#heroBuildingGradient2)" />
-                    <rect x="63" y="50" width="6" height="15" fill="url(#heroBuildingGradient1)" />
-                    {/* Water/base line */}
-                    <rect x="30" y="65" width="40" height="3" fill="url(#heroWaterGradient)" />
-                    {/* Side motion lines */}
-                    <path d="M15 70 L5 60" stroke="url(#heroLineGradient)" strokeWidth="2" fill="none" />
-                    <path d="M15 70 L8 63" stroke="url(#heroLineGradient)" strokeWidth="1.5" fill="none" />
-                    <path d="M85 70 L95 60" stroke="url(#heroLineGradient)" strokeWidth="2" fill="none" />
-                    <path d="M85 70 L92 63" stroke="url(#heroLineGradient)" strokeWidth="1.5" fill="none" />
-                    
-                    {/* Gradients */}
-                    <defs>
-                      <linearGradient id="heroTriangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#e0e7ff" />
-                      </linearGradient>
-                      <linearGradient id="heroBuildingGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#c7d2fe" />
-                      </linearGradient>
-                      <linearGradient id="heroBuildingGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#f8fafc" />
-                        <stop offset="100%" stopColor="#e0e7ff" />
-                      </linearGradient>
-                      <linearGradient id="heroBuildingGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#c7d2fe" />
-                      </linearGradient>
-                      <linearGradient id="heroWaterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#e0e7ff" />
-                      </linearGradient>
-                      <linearGradient id="heroLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#c7d2fe" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white tracking-wide">TRICITY</span>
-                  <span className="text-xs sm:text-sm md:text-lg text-white/80 tracking-widest">-SOLUTIONS-</span>
-                </div>
-              </div>
+              Professional Home & Commercial Services
             </h1>
           </div>
           
           {/* Simple Subtitle */}
           <div className="mb-4 md:mb-6">
             <p className="text-lg sm:text-xl md:text-2xl font-light opacity-90 tracking-wide">
-              Professional Home & Commercial Services
+              Your Trusted Partner for Quality Work
             </p>
           </div>
           
@@ -600,57 +514,13 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             <div className="space-y-4 md:space-y-6">
-              <div className="flex items-center space-x-2 md:space-x-3">
-                <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0">
-                  <svg viewBox="0 0 100 100" className="w-full h-full">
-                    {/* Main triangular shape */}
-                    <path d="M50 10 L85 70 L15 70 Z" fill="url(#footerTriangleGradient)" />
-                    {/* Cityscape buildings */}
-                    <rect x="35" y="50" width="6" height="15" fill="url(#footerBuildingGradient1)" />
-                    <rect x="42" y="45" width="6" height="20" fill="url(#footerBuildingGradient2)" />
-                    <rect x="49" y="40" width="6" height="25" fill="url(#footerBuildingGradient3)" />
-                    <rect x="56" y="45" width="6" height="20" fill="url(#footerBuildingGradient2)" />
-                    <rect x="63" y="50" width="6" height="15" fill="url(#footerBuildingGradient1)" />
-                    {/* Water/base line */}
-                    <rect x="30" y="65" width="40" height="3" fill="url(#footerWaterGradient)" />
-                    {/* Side motion lines */}
-                    <path d="M15 70 L5 60" stroke="url(#footerLineGradient)" strokeWidth="2" fill="none" />
-                    <path d="M15 70 L8 63" stroke="url(#footerLineGradient)" strokeWidth="1.5" fill="none" />
-                    <path d="M85 70 L95 60" stroke="url(#footerLineGradient)" strokeWidth="2" fill="none" />
-                    <path d="M85 70 L92 63" stroke="url(#footerLineGradient)" strokeWidth="1.5" fill="none" />
-                    
-                    {/* Gradients */}
-                    <defs>
-                      <linearGradient id="footerTriangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#1e40af" />
-                        <stop offset="100%" stopColor="#7c3aed" />
-                      </linearGradient>
-                      <linearGradient id="footerBuildingGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#3b82f6" />
-                        <stop offset="100%" stopColor="#1d4ed8" />
-                      </linearGradient>
-                      <linearGradient id="footerBuildingGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#60a5fa" />
-                        <stop offset="100%" stopColor="#2563eb" />
-                      </linearGradient>
-                      <linearGradient id="footerBuildingGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#93c5fd" />
-                        <stop offset="100%" stopColor="#3b82f6" />
-                      </linearGradient>
-                      <linearGradient id="footerWaterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#60a5fa" />
-                        <stop offset="100%" stopColor="#3b82f6" />
-                      </linearGradient>
-                      <linearGradient id="footerLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#1e40af" />
-                        <stop offset="100%" stopColor="#7c3aed" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-lg md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wide">TRICITY</span>
-                  <span className="text-xs text-muted-foreground tracking-widest">-SOLUTIONS-</span>
+              <div className="flex items-center justify-center">
+                <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
+                  <img 
+                    src={tricityLogo} 
+                    alt="TRICITY Solutions Logo" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
               <p className="text-sm md:text-base text-muted-foreground">
