@@ -504,7 +504,7 @@ const Index = () => {
                     </div>
                     <div className="relative z-10">
                       <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Location</h4>
-                      <p className="text-muted-foreground">Serving all sectors of Chandigarh & Mohali</p>
+                      <p className="text-muted-foreground">Serving all pincodes of Chandigarh, Panchkula, Mohali and Zirakpur</p>
                     </div>
                   </div>
                 </CardContent>
