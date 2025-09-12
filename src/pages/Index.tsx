@@ -6,7 +6,7 @@ import BookingModal from "@/components/BookingModal";
 import TestimonialCard from "@/components/TestimonialCard";
 import ProjectGallery from "@/components/ProjectGallery";
 import heroImage from "@/assets/hero-services.jpg";
-import logoImage from "@/assets/Kaamkarlologo.png";
+import logoImage from "@/assets/Kaamkarlologo.svg";
 import {
   Phone,
   Mail,
@@ -203,7 +203,7 @@ const Index = () => {
         <div className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between relative">
           {/* TRICITY Logo - Mobile: Left side, Desktop: Center with text */}
           <div className="flex items-center">
-            <div className="w-16 h-16 md:w-24 md:h-24 flex-shrink-0">
+            <div className="w-32 h-32 md:w-48 md:h-48 flex-shrink-0">
               <img 
                 src={logoImage} 
                 alt="TRICITY Solutions Logo" 
@@ -294,9 +294,9 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Logo - Mobile: Center Top, Desktop: Left */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 z-50">
-          <div className="w-40 h-40 sm:w-44 sm:h-44 md:w-40 md:h-40 lg:w-44 lg:h-44">
+        {/* Logo - Center on Mobile, Top Left on Desktop */}
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 md:-top-28 md:-left-20 md:translate-x-0 z-50">
+          <div className="w-80 h-80 sm:w-88 sm:h-88 md:w-80 md:h-80 lg:w-88 lg:h-88">
             <img 
               src={logoImage} 
               alt="TRICITY Solutions Logo" 
@@ -318,8 +318,11 @@ const Index = () => {
 
         {/* Content Container (centered) */}
         <div className="relative z-10 text-center mt-6 text-white px-4 max-w-4xl mx-auto">
+          {/* Dark overlay behind main content */}
+          <div className="absolute inset-0 bg-black/50 rounded-2xl -m-4"></div>
+          
           {/* Elegant Badge */}
-          <div className="mb-6 md:mb-8 inline-block">
+          <div className="mb-6 md:mb-8 inline-block relative z-10">
             <span className="inline-flex items-center px-3 md:px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-xs md:text-sm font-medium border border-white/20">
               <span className="text-secondary mr-1 md:mr-2">★</span>
               <span className="tracking-wider hidden sm:inline">TRUSTED BY 1000+ CUSTOMERS IN CHANDIGARH</span>
@@ -329,21 +332,21 @@ const Index = () => {
           </div>
 
           {/* Headline */}
-          <div>
+          <div className="relative z-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight">
               Professional Home & Commercial Services
             </h1>
           </div>
 
           {/* Subtitle */}
-          <div className="mb-4 md:mb-6">
+          <div className="mb-4 md:mb-6 relative z-10">
             <p className="text-lg sm:text-xl md:text-2xl font-light opacity-90 tracking-wide">
               Your Trusted Partner for Quality Work
             </p>
           </div>
 
           {/* Description */}
-          <div className="mb-8 md:mb-10">
+          <div className="mb-8 md:mb-10 relative z-10">
             <p className="text-sm sm:text-base md:text-lg p-3 md:p-5 backdrop-blur-sm bg-white/5 rounded-xl border border-white/10">
               <span className="relative z-10">
                 We provide top-quality home and commercial services in Chandigarh with a focus on reliability, professionalism, and customer satisfaction. Our team of experts is ready to transform your space.
@@ -352,7 +355,7 @@ const Index = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center relative z-10">
             <Button
               onClick={() => handleBookNow()}
               size="lg"
@@ -372,22 +375,24 @@ const Index = () => {
           </div>
 
           {/* Stats */}
-          <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            <div className="text-center">
+          <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10">
+            {/* Dark overlay behind stats */}
+            <div className="absolute inset-0 bg-black/40 rounded-xl -m-2"></div>
+            <div className="text-center relative z-10">
               <p className="text-2xl md:text-3xl font-bold text-white">1000+</p>
-              <p className="text-xs md:text-sm text-white/70">Happy Clients</p>
+              <p className="text-xs md:text-sm text-white/80">Happy Clients</p>
             </div>
-            <div className="text-center">
+            <div className="text-center relative z-10">
               <p className="text-2xl md:text-3xl font-bold text-white">50+</p>
-              <p className="text-xs md:text-sm text-white/70">Expert Team</p>
+              <p className="text-xs md:text-sm text-white/80">Expert Team</p>
             </div>
-            <div className="text-center">
+            <div className="text-center relative z-10">
               <p className="text-2xl md:text-3xl font-bold text-white">10+</p>
-              <p className="text-xs md:text-sm text-white/70">Years Experience</p>
+              <p className="text-xs md:text-sm text-white/80">Years Experience</p>
             </div>
-            <div className="text-center">
+            <div className="text-center relative z-10">
               <p className="text-2xl md:text-3xl font-bold text-white">100%</p>
-              <p className="text-xs md:text-sm text-white/70">Satisfaction</p>
+              <p className="text-xs md:text-sm text-white/80">Satisfaction</p>
             </div>
           </div>
         </div>
@@ -551,7 +556,7 @@ const Index = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             <div className="space-y-4 md:space-y-6">
               <div className="flex items-center justify-center">
-                <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
+                <div className="w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
                   <img 
                     src={logoImage} 
                     alt="TRICITY Solutions Logo" 
