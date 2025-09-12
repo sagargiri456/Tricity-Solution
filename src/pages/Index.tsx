@@ -27,7 +27,7 @@ import waterproofingImage from "@/assets/service-waterproofing.jpg";
 import carpentryImage from "@/assets/service-carpentry.webp";
 import architecturalImage from "@/assets/service-architectural.jpg";
 // Import logo
-import tricityLogo from "@/assets/tricity_logo.png";
+// import logoImage from "@/assets/tricity_logo.png";
  
 
 const Index = () => {
@@ -205,7 +205,7 @@ const Index = () => {
           <div className="flex items-center">
             <div className="w-16 h-16 md:w-24 md:h-24 flex-shrink-0">
               <img 
-                src={tricityLogo} 
+                src={logoImage} 
                 alt="TRICITY Solutions Logo" 
                 className="w-full h-full object-contain"
               />
@@ -294,11 +294,11 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Logo - Top Right Corner */}
-        <div className="absolute top-4 right-12 z-50">
-          <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36">
+        {/* Logo - Mobile: Center Top, Desktop: Left */}
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0 z-50">
+          <div className="w-40 h-40 sm:w-44 sm:h-44 md:w-40 md:h-40 lg:w-44 lg:h-44">
             <img 
-              src={tricityLogo} 
+              src={logoImage} 
               alt="TRICITY Solutions Logo" 
               className="w-full h-full object-contain"
             />
@@ -315,24 +315,6 @@ const Index = () => {
           {/* <div className="absolute inset-0 bg-dot-pattern-small bg-[length:20px_20px] "></div> */}
         </div>
 
-        {/* HERO-LOGO: absolute top-left inside hero (with stronger shadow) */}
-<div className="absolute top-2 left-2 z-20">
-  <div
-    className="relative w-34 h-34 md:w-38 md:h-38 lg:w-50 lg:h-42
-               rounded-2xl overflow-hidden flex items-center justify-center
-               shadow-[0_8px_30px_rgba(0,0,0,0.7)] drop-shadow-2xl
-               ring-1 ring-white/60 dark:ring-white/60
-               transform transition-all duration-300 hover:-translate-y-1 hover:scale-105"
-    aria-hidden="false"
-  >
-    <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/8 to-transparent dark:from-neutral-700/6" />
-    <img
-      src={logoImage}
-      alt="KaamKarlo Logo"
-      className="relative z-10 w-[78%] h-[78%] object-contain"
-    />
-  </div>
-</div>
 
         {/* Content Container (centered) */}
         <div className="relative z-10 text-center mt-6 text-white px-4 max-w-4xl mx-auto">
@@ -571,7 +553,7 @@ const Index = () => {
               <div className="flex items-center justify-center">
                 <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0">
                   <img 
-                    src={tricityLogo} 
+                    src={logoImage} 
                     alt="TRICITY Solutions Logo" 
                     className="w-full h-full object-contain"
                   />
