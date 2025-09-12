@@ -639,8 +639,8 @@ const Index = () => {
                     content:
                       "SCF 50, Sector 8 Panchkula, 134109 with location•⁠ ⁠IN serving - Serving all pincodes of Chandigarh, Panchkula, Mohali and ZIrakpur",
                   },
-                  { icon: Phone, content: "+91 98765 43210" },
-                  { icon: Mail, content: "info@clientcompany.com" },
+                  { icon: Phone, content: "+91 81461 24841" },
+                  { icon: Mail, content: "tricityhomesol@gmail.com" },
                   { icon: Clock, content: "Mon-Sat: 9AM - 6PM" },
                 ].map((item, index) => {
                   const Icon = item.icon;
