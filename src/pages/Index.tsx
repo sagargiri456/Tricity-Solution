@@ -142,7 +142,7 @@ const Index = () => {
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "919876543210"; // Format: country code + number (no +, no spaces)
+    const phoneNumber = "918146124841"; // Format: country code + number (no +, no spaces)
     const message =
       "Hi! I'm interested in your services. Can you please provide more information?";
 
@@ -200,10 +200,10 @@ const Index = () => {
           showNavbar ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         }`}
       >
-        <div className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between relative">
+        <div className="container mx-auto px-4 h-20 md:h-20 flex items-center justify-between relative">
           {/* TRICITY Logo - Mobile: Left side, Desktop: Center with text */}
-          <div className="flex items-center">
-            <div className="w-32 h-32 md:w-48 md:h-48 flex-shrink-0">
+          <div className="flex items-center -ml-20 md:ml-0">
+            <div className="w-64 h-64 md:w-48 md:h-48 flex-shrink-0">
               <img 
                 src={logoImage} 
                 alt="TRICITY Solutions Logo" 
@@ -474,7 +474,7 @@ const Index = () => {
                     </div>
                     <div className="relative z-10">
                       <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Phone</h4>
-                      <p className="text-muted-foreground">+91 98765 43210</p>
+                      <p className="text-muted-foreground">+91 81461 24841</p>
                     </div>
                   </div>
                 </CardContent>
@@ -489,7 +489,7 @@ const Index = () => {
                     </div>
                     <div className="relative z-10">
                       <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Email</h4>
-                      <p className="text-muted-foreground">info@theclientcompany.com</p>
+                      <p className="text-muted-foreground">tricityhomesol@gmail.com</p>
                     </div>
                   </div>
                 </CardContent>
