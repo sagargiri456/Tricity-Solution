@@ -6,7 +6,7 @@ import BookingModal from "@/components/BookingModal";
 import TestimonialCard from "@/components/TestimonialCard";
 import ProjectGallery from "@/components/ProjectGallery";
 import heroImage from "@/assets/hero-services.jpg";
-import logoImage from "@/assets/Kaamkarlologo.png";
+import logoImage from "@/assets/Kaamkarlologo.svg";
 import {
   Phone,
   Mail,
@@ -26,6 +26,9 @@ import paintingImage from "@/assets/service-painting.webp";
 import waterproofingImage from "@/assets/service-waterproofing.jpg";
 import carpentryImage from "@/assets/service-carpentry.webp";
 import architecturalImage from "@/assets/service-architectural.jpg";
+// Import logo
+// import logoImage from "@/assets/tricity_logo.png";
+ 
 
 const Index = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -139,7 +142,7 @@ const Index = () => {
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "919876543210"; // Format: country code + number (no +, no spaces)
+    const phoneNumber = "918146124841"; // Format: country code + number (no +, no spaces)
     const message =
       "Hi! I'm interested in your services. Can you please provide more information?";
 
@@ -197,15 +200,15 @@ const Index = () => {
           showNavbar ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         }`}
       >
-        <div className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between relative">
-          {/* LOGO IMAGE - NAVBAR (replaced SVG with image) */}
-          <div className="flex items-center space-x-2 md:space-x-3">
-            <div className="w-8 h-8 md:w-12 md:h-12 flex-shrink-0">
-              <img src={logoImage} alt="TRICITY Logo" className="w-full h-full object-contain" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-foreground tracking-wide">TRICITY</span>
-              <span className="text-xs text-muted-foreground tracking-widest hidden sm:block">-SOLUTIONS-</span>
+        <div className="container mx-auto px-4 h-20 md:h-20 flex items-center justify-between relative">
+          {/* TRICITY Logo - Mobile: Left side, Desktop: Center with text */}
+          <div className="flex items-center -ml-20 md:ml-0">
+            <div className="w-64 h-64 md:w-48 md:h-48 flex-shrink-0">
+              <img 
+                src={logoImage} 
+                alt="TRICITY Solutions Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
 
@@ -236,14 +239,14 @@ const Index = () => {
 
           {/* Desktop Book Now Button */}
           <div className="hidden md:block">
-            <Button
-              onClick={() => handleBookNow()}
-              className="bg-primary hover:bg-primary/90 relative overflow-hidden group"
-            >
-              <span className="relative z-10">Book Now</span>
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity"></span>
-            </Button>
-          </div>
+          <Button 
+            onClick={() => handleBookNow()} 
+            className="bg-primary hover:bg-primary/90 relative overflow-hidden group"
+          >
+            <span className="relative z-10">Book Now</span>
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </Button>
+        </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
@@ -291,42 +294,35 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background layers */}
+        {/* Logo - Center on Mobile, Top Left on Desktop */}
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 md:-top-28 md:-left-20 md:translate-x-0 z-50">
+          <div className="w-80 h-80 sm:w-88 sm:h-88 md:w-80 md:h-80 lg:w-88 lg:h-88">
+            <img 
+              src={logoImage} 
+              alt="TRICITY Solutions Logo" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+        {/* Clean Background with Subtle Effect */}
         <div className="absolute inset-0">
           <div className="absolute inset-0">
             <img src={heroImage} alt="Professional home services" className="w-full h-full object-cover " />
           </div>
-
-          {/* Simple Gradient Overlay */}
-          {/* <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary mix-blend-multiply"></div> */}
-
+          
+          
           {/* Subtle Pattern Overlay */}
           {/* <div className="absolute inset-0 bg-dot-pattern-small bg-[length:20px_20px] "></div> */}
         </div>
 
-        {/* HERO-LOGO: absolute top-left inside hero (with stronger shadow) */}
-<div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
-  <div
-    className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36
-               rounded-2xl overflow-hidden flex items-center justify-center
-               shadow-[0_8px_30px_rgba(0,0,0,0.7)] drop-shadow-2xl
-               ring-1 ring-white/60 dark:ring-white/60
-               transform transition-all duration-300 hover:-translate-y-1 hover:scale-105"
-    aria-hidden="false"
-  >
-    <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/8 to-transparent dark:from-neutral-700/6" />
-    <img
-      src={logoImage}
-      alt="KaamKarlo Logo"
-      className="relative z-10 w-[75%] h-[75%] object-contain"
-    />
-  </div>
-</div>
 
         {/* Content Container (centered) */}
         <div className="relative z-10 text-center mt-6 text-white px-4 max-w-4xl mx-auto">
+          {/* Dark overlay behind main content */}
+          <div className="absolute inset-0 bg-black/50 rounded-2xl -m-4"></div>
+          
           {/* Elegant Badge */}
-          <div className="mb-6 md:mb-8 inline-block">
+          <div className="mb-6 md:mb-8 inline-block relative z-10">
             <span className="inline-flex items-center px-3 md:px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-xs md:text-sm font-medium border border-white/20">
               <span className="text-secondary mr-1 md:mr-2">★</span>
               <span className="tracking-wider hidden sm:inline">TRUSTED BY 1000+ CUSTOMERS IN CHANDIGARH</span>
@@ -336,68 +332,21 @@ const Index = () => {
           </div>
 
           {/* Headline */}
-          <div>
+          <div className="relative z-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight">
-              <div className="flex flex-col sm:flex-row items-center justify-center mb-2">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex-shrink-0 mb-2 sm:mb-0 sm:mr-4">
-                  {/* small visual mark kept as svg originally — we keep the layout but do not change it */}
-                  <svg viewBox="0 0 100 100" className="w-full h-full">
-                    <path d="M50 10 L85 70 L15 70 Z" fill="url(#heroTriangleGradient)" />
-                    <rect x="35" y="50" width="6" height="15" fill="url(#heroBuildingGradient1)" />
-                    <rect x="42" y="45" width="6" height="20" fill="url(#heroBuildingGradient2)" />
-                    <rect x="49" y="40" width="6" height="25" fill="url(#heroBuildingGradient3)" />
-                    <rect x="56" y="45" width="6" height="20" fill="url(#heroBuildingGradient2)" />
-                    <rect x="63" y="50" width="6" height="15" fill="url(#heroBuildingGradient1)" />
-                    <rect x="30" y="65" width="40" height="3" fill="url(#heroWaterGradient)" />
-                    <path d="M15 70 L5 60" stroke="url(#heroLineGradient)" strokeWidth="2" fill="none" />
-                    <path d="M15 70 L8 63" stroke="url(#heroLineGradient)" strokeWidth="1.5" fill="none" />
-                    <path d="M85 70 L95 60" stroke="url(#heroLineGradient)" strokeWidth="2" fill="none" />
-                    <path d="M85 70 L92 63" stroke="url(#heroLineGradient)" strokeWidth="1.5" fill="none" />
-                    <defs>
-                      <linearGradient id="heroTriangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#e0e7ff" />
-                      </linearGradient>
-                      <linearGradient id="heroBuildingGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#c7d2fe" />
-                      </linearGradient>
-                      <linearGradient id="heroBuildingGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#f8fafc" />
-                        <stop offset="100%" stopColor="#e0e7ff" />
-                      </linearGradient>
-                      <linearGradient id="heroBuildingGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#c7d2fe" />
-                      </linearGradient>
-                      <linearGradient id="heroWaterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#e0e7ff" />
-                      </linearGradient>
-                      <linearGradient id="heroLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" />
-                        <stop offset="100%" stopColor="#c7d2fe" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white tracking-wide">TRICITY</span>
-                  <span className="text-xs sm:text-sm md:text-lg text-white/80 tracking-widest">-SOLUTIONS-</span>
-                </div>
-              </div>
+              Professional Home & Commercial Services
             </h1>
           </div>
 
           {/* Subtitle */}
-          <div className="mb-4 md:mb-6">
+          <div className="mb-4 md:mb-6 relative z-10">
             <p className="text-lg sm:text-xl md:text-2xl font-light opacity-90 tracking-wide">
-              Professional Home & Commercial Services
+              Your Trusted Partner for Quality Work
             </p>
           </div>
 
           {/* Description */}
-          <div className="mb-8 md:mb-10">
+          <div className="mb-8 md:mb-10 relative z-10">
             <p className="text-sm sm:text-base md:text-lg p-3 md:p-5 backdrop-blur-sm bg-white/5 rounded-xl border border-white/10">
               <span className="relative z-10">
                 We provide top-quality home and commercial services in Chandigarh with a focus on reliability, professionalism, and customer satisfaction. Our team of experts is ready to transform your space.
@@ -406,7 +355,7 @@ const Index = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center relative z-10">
             <Button
               onClick={() => handleBookNow()}
               size="lg"
@@ -426,22 +375,24 @@ const Index = () => {
           </div>
 
           {/* Stats */}
-          <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            <div className="text-center">
+          <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10">
+            {/* Dark overlay behind stats */}
+            <div className="absolute inset-0 bg-black/40 rounded-xl -m-2"></div>
+            <div className="text-center relative z-10">
               <p className="text-2xl md:text-3xl font-bold text-white">1000+</p>
-              <p className="text-xs md:text-sm text-white/70">Happy Clients</p>
+              <p className="text-xs md:text-sm text-white/80">Happy Clients</p>
             </div>
-            <div className="text-center">
+            <div className="text-center relative z-10">
               <p className="text-2xl md:text-3xl font-bold text-white">50+</p>
-              <p className="text-xs md:text-sm text-white/70">Expert Team</p>
+              <p className="text-xs md:text-sm text-white/80">Expert Team</p>
             </div>
-            <div className="text-center">
+            <div className="text-center relative z-10">
               <p className="text-2xl md:text-3xl font-bold text-white">10+</p>
-              <p className="text-xs md:text-sm text-white/70">Years Experience</p>
+              <p className="text-xs md:text-sm text-white/80">Years Experience</p>
             </div>
-            <div className="text-center">
+            <div className="text-center relative z-10">
               <p className="text-2xl md:text-3xl font-bold text-white">100%</p>
-              <p className="text-xs md:text-sm text-white/70">Satisfaction</p>
+              <p className="text-xs md:text-sm text-white/80">Satisfaction</p>
             </div>
           </div>
         </div>
@@ -523,7 +474,7 @@ const Index = () => {
                     </div>
                     <div className="relative z-10">
                       <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Phone</h4>
-                      <p className="text-muted-foreground">+91 98765 43210</p>
+                      <p className="text-muted-foreground">+91 81461 24841</p>
                     </div>
                   </div>
                 </CardContent>
@@ -538,7 +489,7 @@ const Index = () => {
                     </div>
                     <div className="relative z-10">
                       <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Email</h4>
-                      <p className="text-muted-foreground">info@theclientcompany.com</p>
+                      <p className="text-muted-foreground">tricityhomesol@gmail.com</p>
                     </div>
                   </div>
                 </CardContent>
@@ -553,7 +504,7 @@ const Index = () => {
                     </div>
                     <div className="relative z-10">
                       <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Location</h4>
-                      <p className="text-muted-foreground">Serving all sectors of Chandigarh & Mohali</p>
+                      <p className="text-muted-foreground">Serving all pincodes of Chandigarh, Panchkula, Mohali and Zirakpur</p>
                     </div>
                   </div>
                 </CardContent>
@@ -604,16 +555,15 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             <div className="space-y-4 md:space-y-6">
-              {/* Footer Logo (replaced SVG with image) */}
-              <div className="flex items-center space-x-2 md:space-x-3">
-                <div className="w-28 h-28 md:w-30 md:h-30 flex-shrink-0">
-                  <img src={logoImage} alt="TRICITY Logo" className="w-full h-full object-contain" />
+              {/* <div className="flex items-center justify-center">
+                <div className="w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
+                  <img 
+                    src={logoImage} 
+                    alt="TRICITY Solutions Logo" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <div className="flex flex-col">
-                  {/* <span className="text-lg md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wide">TRICITY</span> */}
-                  {/* <span className="text-xs text-muted-foreground tracking-widest">-SOLUTIONS-</span> */}
-                </div>
-              </div>
+              </div> */}
 
               <p className="text-sm md:text-base text-muted-foreground">
                 Professional services for all your home and office needs in Chandigarh. Quality work, timely delivery, and customer satisfaction guaranteed.
@@ -689,8 +639,8 @@ const Index = () => {
                     content:
                       "SCF 50, Sector 8 Panchkula, 134109 with location•⁠ ⁠IN serving - Serving all pincodes of Chandigarh, Panchkula, Mohali and ZIrakpur",
                   },
-                  { icon: Phone, content: "+91 98765 43210" },
-                  { icon: Mail, content: "info@clientcompany.com" },
+                  { icon: Phone, content: "+91 81461 24841" },
+                  { icon: Mail, content: "tricityhomesol@gmail.com" },
                   { icon: Clock, content: "Mon-Sat: 9AM - 6PM" },
                 ].map((item, index) => {
                   const Icon = item.icon;
