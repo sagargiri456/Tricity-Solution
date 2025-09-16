@@ -11,9 +11,15 @@ interface ServiceCardProps {
   onBookNow: () => void;
   imageUrl?: string; // Optional image URL for service illustration
   image?: string; // Alternative prop name for image URL
+  price?: string; // Service total price
+  priceRange?: { min: number; max: number }; // Price range object
+  totalCost?: number; // Total service cost
+  bookingFee?: number; // Booking fee amount
+  remainingAmount?: number; // Amount to be paid after service
+  description?: string; // Pricing description
 }
 
-const ServiceCard = ({ title, icon, description, services, onBookNow, imageUrl, image }: ServiceCardProps) => {
+const ServiceCard = ({ title, icon, description, services, onBookNow, imageUrl, image, price, priceRange, totalCost, bookingFee, remainingAmount, description: pricingDescription }: ServiceCardProps) => {
   // Use either imageUrl or image prop
   const displayImage = imageUrl || image;
   return (
@@ -158,6 +164,43 @@ const ServiceCard = ({ title, icon, description, services, onBookNow, imageUrl, 
                <span className="absolute -z-10 inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 rounded-md"></span>
              </p>
            </div>
+
+           {/* Pricing Section */}
+           {price && (
+             <div className="mb-4 p-3 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg border border-green-200 dark:border-green-800 relative overflow-hidden">
+               <div className="absolute inset-0 bg-gradient-to-r from-green-100/30 to-emerald-100/30 dark:from-green-800/10 dark:to-emerald-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+               <div className="relative z-10">
+                 <div className="flex items-center justify-between mb-2">
+                   <div className="flex items-center gap-2">
+                     <span className="text-green-600 dark:text-green-400 text-lg">💰</span>
+                     <span className="text-sm font-medium text-green-700 dark:text-green-300">Service Cost</span>
+                   </div>
+                   <div className="text-right">
+                     <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                       {price}
+                     </div>
+                     <div className="text-xs text-green-500 dark:text-green-500">
+                       fixed price
+                     </div>
+                   </div>
+                 </div>
+                 
+                 {/* Payment Breakdown */}
+                 <div className="grid grid-cols-2 gap-2 mt-2">
+                   <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded text-center">
+                     <div className="text-xs text-green-600 dark:text-green-400 font-medium">Booking Fee</div>
+                     <div className="text-sm font-bold text-green-700 dark:text-green-300">₹{bookingFee || 400}</div>
+                     <div className="text-xs text-green-500 dark:text-green-500">40% upfront</div>
+                   </div>
+                   <div className="bg-white/50 dark:bg-slate-800/50 p-2 rounded text-center">
+                     <div className="text-xs text-green-600 dark:text-green-400 font-medium">After Service</div>
+                     <div className="text-sm font-bold text-green-700 dark:text-green-300">₹{remainingAmount || 600}</div>
+                     <div className="text-xs text-green-500 dark:text-green-500">60% later</div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           )}
           
           <div className="mb-3">
             <h4 className="font-semibold mb-2 text-xs text-foreground flex items-center">

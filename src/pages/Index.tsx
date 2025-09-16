@@ -51,6 +51,12 @@ const Index = () => {
         "Bathroom Fitting",
       ],
       image: plumbingImage,
+      price: "₹1000",
+      priceRange: { min: 1000, max: 1000 },
+      totalCost: 1000,
+      bookingFee: 400,
+      remainingAmount: 600,
+      description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
     },
     {
       title: "Painting Services",
@@ -65,6 +71,12 @@ const Index = () => {
         "Color Consultation",
       ],
       image: paintingImage,
+      price: "₹1000",
+      priceRange: { min: 1000, max: 1000 },
+      totalCost: 1000,
+      bookingFee: 400,
+      remainingAmount: 600,
+      description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
     },
     {
       title: "Waterproofing",
@@ -79,6 +91,12 @@ const Index = () => {
         "Wall Waterproofing",
       ],
       image: waterproofingImage,
+      price: "₹1000",
+      priceRange: { min: 1000, max: 1000 },
+      totalCost: 1000,
+      bookingFee: 400,
+      remainingAmount: 600,
+      description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
     },
     {
       title: "Carpentry Work",
@@ -93,6 +111,12 @@ const Index = () => {
         "Interior Woodwork",
       ],
       image: carpentryImage,
+      price: "₹1000",
+      priceRange: { min: 1000, max: 1000 },
+      totalCost: 1000,
+      bookingFee: 400,
+      remainingAmount: 600,
+      description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
     },
     {
       title: "Architectural Consultancy",
@@ -107,6 +131,12 @@ const Index = () => {
         "Interior Design",
       ],
       image: architecturalImage,
+      price: "₹1000",
+      priceRange: { min: 1000, max: 1000 },
+      totalCost: 1000,
+      bookingFee: 400,
+      remainingAmount: 600,
+      description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
     },
   ];
 
@@ -419,6 +449,12 @@ const Index = () => {
                 description={service.description}
                 services={service.services}
                 image={service.image}
+                price={service.price}
+                priceRange={service.priceRange}
+                totalCost={service.totalCost}
+                bookingFee={service.bookingFee}
+                remainingAmount={service.remainingAmount}
+                description={service.description}
                 onBookNow={() => handleBookNow(service.title)}
               />
             ))}
@@ -677,7 +713,7 @@ const Index = () => {
       </footer>
 
       {/* Booking Modal */}
-      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} selectedService={selectedService} />
+      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} selectedService={selectedService} services={services} />
 
       {/* Floating WhatsApp Button */}
       <div className="fixed bottom-6 right-6 z-50">

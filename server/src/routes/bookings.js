@@ -14,6 +14,45 @@ const router = Router();
 const memoryStore = [];
 const useMemory = !process.env.MONGODB_URI;
 
+// Service pricing mapping - All services cost ₹1000 total
+const servicePricing = {
+  "Plumbing Services": { 
+    totalCost: 1000, 
+    bookingFee: 400, 
+    remainingAmount: 600,
+    priceRange: "₹1000 (₹400 booking + ₹600 after service)",
+    description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
+  },
+  "Painting Services": { 
+    totalCost: 1000, 
+    bookingFee: 400, 
+    remainingAmount: 600,
+    priceRange: "₹1000 (₹400 booking + ₹600 after service)",
+    description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
+  },
+  "Waterproofing": { 
+    totalCost: 1000, 
+    bookingFee: 400, 
+    remainingAmount: 600,
+    priceRange: "₹1000 (₹400 booking + ₹600 after service)",
+    description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
+  },
+  "Carpentry Work": { 
+    totalCost: 1000, 
+    bookingFee: 400, 
+    remainingAmount: 600,
+    priceRange: "₹1000 (₹400 booking + ₹600 after service)",
+    description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
+  },
+  "Architectural Consultancy": { 
+    totalCost: 1000, 
+    bookingFee: 400, 
+    remainingAmount: 600,
+    priceRange: "₹1000 (₹400 booking + ₹600 after service)",
+    description: "Total: ₹1000 | Booking: ₹400 | After Service: ₹600"
+  }
+};
+
 // --- START: NEW GOOGLE SHEETS FUNCTION ---
 
 // The ID of your Google Sheet (from its URL)
@@ -43,6 +82,7 @@ async function appendToSheet(bookingData) {
       bookingData.email || '-',
       bookingData.phone,
       bookingData.service,
+      bookingData.pricing?.priceRange || 'Contact for pricing',
       bookingData.address || '-',
       bookingData.message || '-',
       String(bookingData._id), // Booking ID
@@ -68,7 +108,11 @@ async function appendToSheet(bookingData) {
 function buildMessages(booking) {
   const createdAt = new Date(booking.createdAt).toLocaleString();
   const subject = `✅ Booking Confirmed - ${booking.service}`;
-  const text = `Hello ${booking.name},\n\nYour booking has been received.\n\nService: ${booking.service}\nPhone: ${booking.phone}\nEmail: ${booking.email || '-'}\nAddress: ${booking.address || '-'}\nMessage: ${booking.message || '-'}\nBooking ID: ${booking._id}\nCreated: ${createdAt}\n\nWe will contact you shortly.\n\nTricity Solutions`;
+  const paymentInfo = booking.payment?.status === 'completed' 
+    ? `\nService Cost: ₹1000\nBooking Fee: ✅ Paid (₹${booking.payment?.amount || '400'}) - 40%\nRemaining: ₹600 - 60% (after service)\nPayment ID: ${booking.payment?.razorpay_payment_id || 'N/A'}`
+    : `\nService Cost: ₹1000\nBooking Fee: ⏳ Pending (₹400) - 40%\nRemaining: ₹600 - 60% (after service)`;
+  
+  const text = `Hello ${booking.name},\n\nYour booking has been received.\n\nService: ${booking.service}${paymentInfo}\nPhone: ${booking.phone}\nEmail: ${booking.email || '-'}\nAddress: ${booking.address || '-'}\nMessage: ${booking.message || '-'}\nBooking ID: ${booking._id}\nCreated: ${createdAt}\n\nWe will contact you shortly.\n\nTricity Solutions`;
   const html = `
   <!DOCTYPE html>
   <html>
@@ -110,6 +154,21 @@ function buildMessages(booking) {
         <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.8;">
           Service Requested
         </p>
+        <div style="margin-top: 10px; padding: 8px; background: rgba(255,255,255,0.3); border-radius: 6px;">
+          <div style="font-size: 16px; font-weight: bold; color: #28a745; text-align: center;">💰 Service Cost: ₹1000</div>
+          <div style="font-size: 12px; color: #155724; text-align: center; margin-top: 4px;">40% Booking Fee + 60% After Service</div>
+        </div>
+        ${booking.payment?.status === 'completed' ? `
+        <div style="margin-top: 8px; padding: 8px; background: rgba(40, 167, 69, 0.2); border-radius: 6px; border: 1px solid #28a745;">
+          <div style="font-size: 14px; font-weight: bold; color: #28a745;">✅ Booking Fee Paid (40%)</div>
+          <div style="font-size: 12px; color: #155724;">Amount: ₹${booking.payment?.amount || '400'} | Remaining: ₹600 | ID: ${booking.payment?.razorpay_payment_id || 'N/A'}</div>
+        </div>
+        ` : booking.payment?.status === 'pending' ? `
+        <div style="margin-top: 8px; padding: 8px; background: rgba(255, 193, 7, 0.2); border-radius: 6px; border: 1px solid #ffc107;">
+          <div style="font-size: 14px; font-weight: bold; color: #856404;">⏳ Booking Fee Pending (40%)</div>
+          <div style="font-size: 12px; color: #856404;">Please complete payment of ₹400 to confirm your booking</div>
+        </div>
+        ` : ''}
       </div>
       
       <!-- Booking Details -->
@@ -180,7 +239,11 @@ function buildMessages(booking) {
 function buildAdminMessages(booking) {
   const createdAt = new Date(booking.createdAt).toLocaleString();
   const subject = `🔔 New Booking Alert - ${booking.service}`;
-  const text = `🚨 NEW BOOKING RECEIVED!\n\nCustomer Details:\nName: ${booking.name}\nPhone: ${booking.phone}\nEmail: ${booking.email || 'Not provided'}\nService: ${booking.service}\nAddress: ${booking.address || 'Not provided'}\nMessage: ${booking.message || 'No message'}\nBooking ID: ${booking._id}\nCreated: ${createdAt}\n\n⚠️ ACTION REQUIRED: Please contact the customer to confirm the booking.\n\nTricity Solutions Admin Panel`;
+  const paymentInfo = booking.payment?.status === 'completed' 
+    ? `\nService Cost: ₹1000\nBooking Fee: ✅ Paid (₹${booking.payment?.amount || '400'}) - 40%\nRemaining: ₹600 - 60% (after service)\nPayment ID: ${booking.payment?.razorpay_payment_id || 'N/A'}`
+    : '\nService Cost: ₹1000\nBooking Fee: ⏳ Pending (₹400) - 40%\nRemaining: ₹600 - 60% (after service)';
+  
+  const text = `🚨 NEW BOOKING RECEIVED!\n\nCustomer Details:\nName: ${booking.name}\nPhone: ${booking.phone}\nEmail: ${booking.email || 'Not provided'}\nService: ${booking.service}${paymentInfo}\nAddress: ${booking.address || 'Not provided'}\nMessage: ${booking.message || 'No message'}\nBooking ID: ${booking._id}\nCreated: ${createdAt}\n\n⚠️ ACTION REQUIRED: Please contact the customer to confirm the booking.\n\nTricity Solutions Admin Panel`;
   const html = `
   <!DOCTYPE html>
   <html>
@@ -209,6 +272,21 @@ function buildAdminMessages(booking) {
         <h2 style="margin: 0; font-size: 20px; font-weight: bold;">
           🛠️ ${booking.service}
         </h2>
+        <div style="margin-top: 8px; padding: 6px; background: rgba(255,255,255,0.3); border-radius: 6px;">
+          <div style="font-size: 14px; font-weight: bold; color: #1976d2; text-align: center;">💰 Service Cost: ₹1000</div>
+          <div style="font-size: 10px; color: #1976d2; text-align: center;">40% Booking Fee + 60% After Service</div>
+        </div>
+        ${booking.payment?.status === 'completed' ? `
+        <div style="margin-top: 6px; padding: 6px; background: rgba(40, 167, 69, 0.2); border-radius: 6px; border: 1px solid #28a745;">
+          <div style="font-size: 12px; font-weight: bold; color: #28a745;">✅ Booking Fee Paid (40%)</div>
+          <div style="font-size: 10px; color: #155724;">Amount: ₹${booking.payment?.amount || '400'} | Remaining: ₹600 | ID: ${booking.payment?.razorpay_payment_id || 'N/A'}</div>
+        </div>
+        ` : booking.payment?.status === 'pending' ? `
+        <div style="margin-top: 6px; padding: 6px; background: rgba(255, 193, 7, 0.2); border-radius: 6px; border: 1px solid #ffc107;">
+          <div style="font-size: 12px; font-weight: bold; color: #856404;">⏳ Booking Fee Pending (40%)</div>
+          <div style="font-size: 10px; color: #856404;">Amount: ₹400</div>
+        </div>
+        ` : ''}
       </div>
       
       <!-- Customer Details -->
@@ -292,8 +370,8 @@ function validateE164(phone) {
 }
 
 router.post("/", async (req, res) => {
-  try {
-    const { name, email, phone, address, service, message } = req.body || {};
+  try {
+    const { name, email, phone, address, service, message, payment } = req.body || {};
     if (!name || !phone || !service) {
       return res
         .status(400)
@@ -307,19 +385,31 @@ router.post("/", async (req, res) => {
         });
     }
 
-    let booking;
-    if (useMemory) {
-      booking = {
-        _id: String(Date.now()),
-        name, email, phone, address, service, message,
-        status: "pending",
-        notification: { whatsapp: "pending", email: "pending" },
-        createdAt: new Date(),
-      };
-      memoryStore.push(booking);
-    } else {
-      booking = await Booking.create({ name, email, phone, address, service, message });
-    }
+    // Get pricing information for the service
+    const pricing = servicePricing[service] || { priceRange: "Contact for pricing", minPrice: null, maxPrice: null };
+
+    // Set payment status based on whether payment data is provided
+    const paymentStatus = payment ? 'completed' : 'pending';
+    const bookingStatus = payment ? 'confirmed' : 'pending';
+
+    let booking;
+    if (useMemory) {
+      booking = {
+        _id: String(Date.now()),
+        name, email, phone, address, service, message,
+        pricing,
+        payment: payment ? { ...payment, status: paymentStatus } : { status: paymentStatus },
+        status: bookingStatus,
+        notification: { whatsapp: "pending", email: "pending" },
+        createdAt: new Date(),
+      };
+      memoryStore.push(booking);
+    } else {
+      booking = await Booking.create({ 
+        name, email, phone, address, service, message, pricing,
+        payment: payment ? { ...payment, status: paymentStatus } : { status: paymentStatus }
+      });
+    }
     
     // --- NEW: Call the function to update Google Sheets ---
     // We call it here so it has the booking._id
