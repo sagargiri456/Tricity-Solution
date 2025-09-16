@@ -24,4 +24,7 @@ dist-ssr
 *.sw?
 *.env
 .vercel
-.credentials.json
+# .credentials.json
+# Credentials (ignore anywhere in the repo)
+credentials.json
+**/credentials.json
